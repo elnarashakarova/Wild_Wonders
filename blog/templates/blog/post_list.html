@@ -1,0 +1,26 @@
+
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+{% for post in posts %}
+    <article class="post">
+    <time class="date">
+    {{ post.published_date }}
+    </time>
+    
+    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+
+
+    <p style="font-size: 1.1em; font-weight: bold; color: #333; margin-top: 0.5em; margin-bottom: 0.5em;">
+        Author: {{ post.author.username }}
+    </p>    
+
+    <p>{{ post.get_excerpt|linebreaksbr }}</p>    <!-- Use excerpt instead of full text -->
+    <a href="{% url 'post_detail' pk=post.pk %}"> Read more    </a> <!-- Read more link -->
+
+    </article>
+{% endfor %}
+
+{% endblock %}                              
+             
